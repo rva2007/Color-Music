@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/next"
+        android:icon="@drawable/navigate_next_24"
+        android:title="@string/next"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/before"
+        android:icon="@drawable/navigate_before_24"
+        android:title="@string/before"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/settings"
+        android:icon="@drawable/settings_24"
+        android:title="@string/settings"
+        app:showAsAction="ifRoom" />
+
+
+</menu>
