@@ -4,18 +4,20 @@ import android.os.Bundle
 import android.view.*
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
-import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
-import kotlin.system.exitProcess
+import androidx.core.view.MenuProvider
 
-class MainFragment : Fragment(), MenuProvider {
+class SettingsFragment : Fragment(), MenuProvider {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-        return inflater.inflate(R.layout.fragment_main, container, false)
+        return inflater.inflate(R.layout.fragment_settings, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -24,14 +26,20 @@ class MainFragment : Fragment(), MenuProvider {
         requireActivity().onBackPressedDispatcher.addCallback(
             this,
             object : OnBackPressedCallback(true) {
-                override fun handleOnBackPressed() = exitProcess(0)
+                override fun handleOnBackPressed() {
+                    requireActivity().supportFragmentManager
+                        .beginTransaction()
+                        .replace(R.id.host, MainFragment.newInstance())
+                        .commit()
+
+                }
             })
 
         requireActivity().addMenuProvider(this, viewLifecycleOwner)
     }
 
     override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
-        menuInflater.inflate(R.menu.main_menu, menu)
+        menuInflater.inflate(R.menu.settings_menu, menu)
     }
 
     override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
@@ -39,10 +47,10 @@ class MainFragment : Fragment(), MenuProvider {
             R.id.next -> {
                 Toast.makeText(requireContext(), "Next", Toast.LENGTH_SHORT).show()
             }
-            R.id.settings -> {
+            R.id.before -> {
                 requireActivity().supportFragmentManager
                     .beginTransaction()
-                    .replace(R.id.host, SettingsFragment.newInstance())
+                    .replace(R.id.host, MainFragment.newInstance())
                     .commit()
             }
         }
@@ -51,6 +59,6 @@ class MainFragment : Fragment(), MenuProvider {
 
     companion object {
         @JvmStatic
-        fun newInstance() = MainFragment()
+        fun newInstance() = SettingsFragment()
     }
 }

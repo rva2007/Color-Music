@@ -7,10 +7,9 @@
         android:title="@string/next"
         app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/settings"
-        android:icon="@drawable/settings_24"
-        android:title="@string/settings"
+        android:id="@+id/before"
+        android:icon="@drawable/navigate_before_24"
+        android:title="@string/before"
         app:showAsAction="ifRoom" />
-
 
 </menu>
